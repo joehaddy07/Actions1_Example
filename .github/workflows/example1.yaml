@@ -1,0 +1,83 @@
+# ----------------------------------------------------------
+# Workflow Name
+# This is the name displayed in the GitHub Actions tab.
+# ----------------------------------------------------------
+name: Example Workflow
+
+# ----------------------------------------------------------
+# Trigger
+# This workflow starts automatically whenever code is
+# pushed to the main branch.
+# ----------------------------------------------------------
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+  security-events: write      
+
+# ----------------------------------------------------------
+# Jobs
+# A workflow is made up of one or more jobs.
+# Each job runs on its own virtual machine (runner).
+# ----------------------------------------------------------
+jobs:
+
+  # --------------------------------------------------------
+  # Build Job
+  # This job contains all the steps needed to execute
+  # the workflow.
+  # --------------------------------------------------------
+  build:
+
+    # ------------------------------------------------------
+    # Runner
+    # GitHub provisions an Ubuntu virtual machine to run
+    # this job.
+    # Other options include:
+    #   windows-latest
+    #   macos-latest
+    #   self-hosted
+    # ------------------------------------------------------
+    runs-on: self-hosted
+    # ------------------------------------------------------
+    # Steps
+    # Steps execute one after another in the order listed.
+    # ------------------------------------------------------
+    steps:
+
+      # ----------------------------------------------------
+      # Step 1: Checkout Repository
+      #
+      # Downloads your GitHub repository onto the runner.
+      # Without this step, the runner has no access to your
+      # project files.
+      # ----------------------------------------------------
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ----------------------------------------------------
+      # Step 2: Print a Welcome Message
+      #
+      # The 'run' keyword executes a shell command on the
+      # runner. Here, it prints a message to the workflow log.
+      # ----------------------------------------------------
+      - name: Welcome message
+        run: echo "Hello, welcome to the workflow!"
+
+      # ----------------------------------------------------
+      # Step 3: List Repository Files
+      #
+      # The 'ls -la' command lists all files and directories,
+      # including hidden files, in the current directory.
+      #
+      # This is useful for:
+      # - Verifying the repository was checked out correctly.
+      # - Debugging missing files.
+      # - Inspecting the project structure.
+      # ----------------------------------------------------
+      - name: List files
+        run: |
+          cd ./demo
+          ls -la
