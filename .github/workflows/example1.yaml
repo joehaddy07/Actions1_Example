@@ -80,7 +80,5 @@ jobs:
       # - Debugging missing files.
       # - Inspecting the project structure.
       # ----------------------------------------------------
-      - name: List files
-        run: |
-          cd ./demo
-          ls -la
+      - name: List repository files
+        run: ls -la
