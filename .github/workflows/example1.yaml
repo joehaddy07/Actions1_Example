@@ -40,7 +40,10 @@ jobs:
     #   macos-latest
     #   self-hosted
     # ------------------------------------------------------
-    runs-on: self-hosted
+    runs-on:
+    - self-hosted
+    - Linux
+    - X64
     # ------------------------------------------------------
     # Steps
     # Steps execute one after another in the order listed.
